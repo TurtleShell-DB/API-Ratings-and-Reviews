@@ -18,7 +18,10 @@ module.exports = {
       }
       res.status(201).send(data);
     })
+  },
+  post: (req, res) => {
+    console.log(req.body)
+    console.log('works')
+    res.send()
   }
-
-  
 }
