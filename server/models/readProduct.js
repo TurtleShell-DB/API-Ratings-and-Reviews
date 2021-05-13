@@ -5,14 +5,16 @@ module.exports = {
     const container = [];
     const promiseContainer = [];
     let queryContain = null;
+    let page = 1;
+    let count = 5
     db.queryAsync(`SELECT review_id, rating, date, summary,
       body, recommend, name, email, response, helpfulness
-      FROM product WHERE product_id=${value}`)
+      FROM product WHERE product_id=${value} LIMIT ${page}, ${count}`)
       .then((products) => {
         const data = {
-          product: value,
-          page: null,
-          count: null,
+          product: parseInt(value),
+          page: page,
+          count: count,
           results: [],
         };
         products[0].forEach((product) => {

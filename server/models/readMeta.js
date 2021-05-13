@@ -45,7 +45,6 @@ module.exports = {
             }
           })
           data.characteristics = characteristic
-          console.log(data);
           return data;
         })
         .then((data) => callback(null, data))

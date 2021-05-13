@@ -75,7 +75,6 @@ IGNORE 1 ROWS (
   review_id,
   url
 );
-SET review_id=review_id, url=url;
 
 -- ----
 -- Create Characteristics
@@ -102,7 +101,6 @@ IGNORE 1 ROWS (
   product_id,
   name
 )
-SET `characteristic_id`=characteristic_id, `product_id`=`product_id`, `name`=`name`;
 
 -- ----
 -- Create Characteristics_values
@@ -130,10 +128,6 @@ IGNORE 1 ROWS (
   @dummy,
   value
 );
-SET characteristic_id=characteristic_id, value=value;
-
-DELETE FROM Photos WHERE NOT EXISTS
-(SELECT * FROM product AS t1 WHERE t1.review_id = Photos.review_id);
 
 ALTER TABLE `Photos` ADD FOREIGN KEY
 (review_id) REFERENCES `Product` (`review_id`);
@@ -142,6 +136,9 @@ DELETE FROM Characteristics_values WHERE NOT EXISTS
 (SELECT * FROM Characteristics AS t1
 WHERE t1.characteristic_id = Characteristics_values.characteristic_id);
 
+DELETE FROM Photos WHERE NOT EXISTS
+(SELECT * FROM Answers AS t1
+WHERE t1.id = Photos.answer_id);
 
 ALTER TABLE `Characteristics_values` ADD FOREIGN KEY
 (characteristic_id) REFERENCES `Characteristics` (`characteristic_id`);
