@@ -20,8 +20,14 @@ module.exports = {
     })
   },
   post: (req, res) => {
-    console.log(req.body)
-    console.log('works')
-    res.send()
+    const value = req.body;
+    model.postProduct(value, (error, data) => {
+      if (error) {
+        res.status(400).send(error);
+      }
+      res.status(200).send();
+    })
+    //create variable that has req body
+    //pass to model postProduct the value and error first callback
   }
 }
