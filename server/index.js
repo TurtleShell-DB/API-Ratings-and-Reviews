@@ -17,6 +17,10 @@ app.get('/api/reviews/meta/:product_id', controllers.getMeta);
 
 app.post('/api/reviews', controllers.post);
 
+app.put('/api/reviews/:review_id/helpful', controllers.putHelpful);
+
+app.put('/api/reviews/:review_id/report', controllers.putReport);
+
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
 })

@@ -25,9 +25,25 @@ module.exports = {
       if (error) {
         res.status(400).send(error);
       }
-      res.status(200).send();
+      res.status(200).send(data);
     })
-    //create variable that has req body
-    //pass to model postProduct the value and error first callback
-  }
+  },
+  putHelpful: (req, res) => {
+    const review = req.params.review_id;
+    model.updateHelpful(review, (error, data) => {
+      if (error) {
+        res.status(400).send(error);
+      }
+      res.status(200).send(data)
+    })
+  },
+  putReport: (req, res) => {
+    const review = req.params.review_id;
+    model.updateReport(review, (error, data) => {
+      if (error) {
+        res.status(400).send(error);
+      }
+      res.status(200).send(data)
+    })
+  },
 }
