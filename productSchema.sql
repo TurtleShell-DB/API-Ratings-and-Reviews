@@ -142,3 +142,39 @@ WHERE t1.id = Photos.answer_id);
 
 ALTER TABLE `Characteristics_values` ADD FOREIGN KEY
 (characteristic_id) REFERENCES `Characteristics` (`characteristic_id`);
+
+-- ----
+-- Add index to Product
+-- ----
+
+ALTER TABLE product ADD INDEX product_id_index (product_id);
+ALTER TABLE product ADD INDEX rating_index (rating);
+ALTER TABLE product ADD INDEX date_index (date);
+ALTER TABLE product ADD INDEX summary_index (summary);
+ALTER TABLE product ADD INDEX body_index (body);
+ALTER TABLE product ADD INDEX recommend_index (recommend);
+ALTER TABLE product ADD INDEX reported_index (reported);
+ALTER TABLE product ADD INDEX name_index (name);
+ALTER TABLE product ADD INDEX email_index (email);
+ALTER TABLE product ADD INDEX response_index (response);
+ALTER TABLE product ADD INDEX helpfulness_index (helpfulness);
+
+-- ----
+-- Add Indexes to Photos
+-- ----
+
+ALTER TABLE Photos ADD INDEX url_index (url);
+
+-- ----
+-- Add Indexes to Characteristics
+-- ----
+
+ALTER TABLE Characteristics ADD INDEX product_id_index (product_id);
+ALTER TABLE Characteristics ADD INDEX name_index (name);
+
+-- ----
+-- Add Indexes to Characteristics_values
+-- ----
+
+ALTER TABLE Characteristics_values ADD INDEX value_index (value);
+
