@@ -7,7 +7,7 @@ module.exports = {
       if (error) {
         res.status(400).send(error);
       }
-      res.status(201).send(data);
+      res.status(201).send(data[0]);
     })
   },
   getMeta: (req, res) => {
