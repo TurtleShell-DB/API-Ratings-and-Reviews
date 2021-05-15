@@ -10,7 +10,7 @@ module.exports = {
       recommended: {},
       characteristics: {}
     }
-    db.queryAsync(`SELECT rating, recommend FROM Product WHERE product_id=${value}`)
+    db.queryAsync(`SELECT rating, recommend FROM product WHERE product_id=${value}`)
       .then((reviews) => {
         const review = (JSON.parse(JSON.stringify(reviews[0])));
         review.forEach((rating) => {
