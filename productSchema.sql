@@ -50,6 +50,8 @@ IGNORE 1 ROWS (
 SET date=FROM_UNIXTIME(@var1/1000);
 
 
+
+
 -- ----
 -- Create Photos
 -- ----
@@ -65,6 +67,16 @@ CREATE TABLE `Photos` (
 -- Load Photos
 -- ----
 
+LOAD DATA LOCAL INFILE './csv/reviews_photos.csv'
+INTO TABLE Photos
+FIELDS TERMINATED BY ','
+OPTIONALLY ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS (
+  @dummy,
+  review_id,
+  url
+);
 LOAD DATA LOCAL INFILE './csv/reviews_photos.csv'
 INTO TABLE Photos
 FIELDS TERMINATED BY ','
@@ -117,8 +129,8 @@ CREATE TABLE Characteristics_values (
 -- Load Characteristics_values
 -- ---
 
-LOAD DATA LOCAL INFILE './csv/characteristic_reviews.csv'
-INTO TABLE characteristics_values
+LOAD DATA LOCAL INFILE './csv/Characteristics_values.csv'
+INTO TABLE Characteristics_values
 FIELDS TERMINATED BY ','
 OPTIONALLY ENCLOSED BY '"'
 LINES TERMINATED BY '\n'
@@ -147,17 +159,17 @@ ALTER TABLE `Characteristics_values` ADD FOREIGN KEY
 -- Add index to Product
 -- ----
 
-ALTER TABLE product ADD INDEX product_id_index (product_id);
-ALTER TABLE product ADD INDEX rating_index (rating);
-ALTER TABLE product ADD INDEX date_index (date);
-ALTER TABLE product ADD INDEX summary_index (summary);
-ALTER TABLE product ADD INDEX body_index (body);
-ALTER TABLE product ADD INDEX recommend_index (recommend);
-ALTER TABLE product ADD INDEX reported_index (reported);
-ALTER TABLE product ADD INDEX name_index (name);
-ALTER TABLE product ADD INDEX email_index (email);
-ALTER TABLE product ADD INDEX response_index (response);
-ALTER TABLE product ADD INDEX helpfulness_index (helpfulness);
+ALTER TABLE Product ADD INDEX product_id_index (product_id);
+ALTER TABLE Product ADD INDEX rating_index (rating);
+ALTER TABLE Product ADD INDEX date_index (date);
+ALTER TABLE Product ADD INDEX summary_index (summary);
+ALTER TABLE Product ADD INDEX body_index (body);
+ALTER TABLE Product ADD INDEX recommend_index (recommend);
+ALTER TABLE Product ADD INDEX reported_index (reported);
+ALTER TABLE Product ADD INDEX name_index (name);
+ALTER TABLE Product ADD INDEX email_index (email);
+ALTER TABLE Product ADD INDEX response_index (response);
+ALTER TABLE Product ADD INDEX helpfulness_index (helpfulness);
 
 -- ----
 -- Add Indexes to Photos
